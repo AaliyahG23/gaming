@@ -1,6 +1,36 @@
 (function(window, _) {
     window.gaming = window.gaming || {
-      numz: {},
+      numz: {
+      /**
+       * 
+       * @param {Object} pointA - the first point of reference; includes x and y information
+       * @param {Object} pointB - the second point of reference; includes x and y information
+       * @returns the angle between the two reference points in degrees
+       */
+        getAngleDegrees: function(pointA, pointB) {
+          const distanceX = pointB.x - pointA.x;
+          const distanceY = pointB.y - pointA.y;
+          const radians = Math.atan2(distanceY, distanceX);
+          const degrees = radians * 180 / Math.PI;
+          return degrees
+        },
+        /**
+         * 
+         * @param {number} degrees - an angle given in degrees
+         * @returns the given value converted into radians
+         */
+        degreesToRadians: function(degrees) {
+          return degrees * Math.PI / 180
+        },
+        /**
+         * 
+         * @param {number} radians - an angle given in radians
+         * @returns the given value converted into degrees
+         */
+        radiansToDegrees: function(radians) {
+          return radians * 180 / Math.PI;
+        }
+      },
       phyz: {
     /**
       * Returns an Object with basic properties utilized in a 
@@ -59,12 +89,18 @@
          }
        };
      },
-     getDistance: function(pointA, pointB) {
+     /**
+      * 
+      * @param {Object} pointA - the first reference point; must contain x and y values
+      * @param {Object} pointB - the second reference point; must contain x and y values
+      * @returns the distance between the two reference points
+      */
+     calculateDistance: function(pointA, pointB) {
       const distanceX = pointB.x - pointA.x;
       const distanceY = pointB.y - pointA.y;
       const distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
       return distance;
-     }
+     },
     },
     };
   }(window, window._));
